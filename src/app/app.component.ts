@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-basic';
+  inputValue = '';
+
+  onInput(event) {
+    // this.inputValue = (event.target as HTMLInputElement).value;
+  }
+
+  onBlur(str: string) {
+    this.inputValue = str;
+  }
 }
