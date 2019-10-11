@@ -1,11 +1,20 @@
-<h1>Hello angular</h1>
+<h1>Angular Add/Remove list</h1>
+<app-post-form
+  (onAdd)="addPost($event)"
+></app-post-form>
+<hr/>
 
-<label>
-  <!--  <input #input1  (blur)="onBlur(input1.value)" (input)="onInput($event)" type="text">-->
-  <input #input1 [(ngModel)]="inputValue" type="text">
-</label>
-input value:{{inputValue}}
-<br/>
-children components
-<app-post></app-post>
-<app-post></app-post>
+<div *ngIf="posts.length; else noPosts">
+  <app-post
+    [post]="p"
+    [postIndex]="idx+1"
+    *ngFor="let p of posts; index as idx"
+    (onRemove)="removePost($event)"
+    class="posts-list"
+  >
+  </app-post>
+</div>
+
+<ng-template #noPosts>
+  no posts :)
+</ng-template>

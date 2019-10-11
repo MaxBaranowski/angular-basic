@@ -1,0 +1,15 @@
+<div class="form-fields">
+  <input
+    type="text"
+    class="form-field"
+    placeholder="Title..."
+    [(ngModel)]="formTitle"
+  >
+  <input
+    type="text"
+    class="form-field"
+    placeholder="Text..."
+    [(ngModel)]="formText"
+  >
+  <button class="btn" (click)="addPost()" (keydown.enter)="addPost()">Add new</button>
+</div>

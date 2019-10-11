@@ -1,7 +1,10 @@
 <div class="post">
-  <h2>Post title: {{ postTitle }}</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aperiam consequatur ex fuga incidunt laboriosam
-    officia possimus quisquam quos tempore?</p>
+  <small>{{postIndex}}</small>
+  <h2>{{post.title}}</h2>
+  <p>{{post.text}}</p>
+  <button
+    class="btn close"
+    (click)="removePost()"
+  >&times;</button>
 </div>
 
-<img [src]="frameworkLogo" alt="">

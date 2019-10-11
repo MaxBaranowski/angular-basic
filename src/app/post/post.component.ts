@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+export interface Post {
+  id: number;
+  title: string;
+  text: string;
+}
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
 
-  public postTitle = 'test title';
-  public frameworkLogo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/800px-React-icon.svg.png';
+  @Input() post: Post;
+  @Input() postIndex: number;
 
-  constructor() {
-    setTimeout(() => {
-      this.frameworkLogo = 'https://miro.medium.com/max/1200/1*JSFjofdjIH5RDVf-qOODGw.png';
-    }, 3000);
+  @Output() onRemove: EventEmitter<number> = new EventEmitter();
+
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  removePost() {
+    this.onRemove.emit(this.post.id);
   }
 
 }
