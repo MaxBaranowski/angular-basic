@@ -1,20 +1,27 @@
-<h1>Angular Add/Remove list</h1>
-<app-post-form
-  (onAdd)="addPost($event)"
-></app-post-form>
-<hr/>
+<nav class="navbar">
+  <h1>
+    <a href="#">Angular Routing</a>
+  </h1>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active"><a routerLink="/posts">Posts</a></li>
+    <li routerLinkActive="active"><a routerLink="/about">About</a></li>
+    <li>
+      <button class="btn">Login</button>
+    </li>
+    <li>
+      <button class="btn">Logout</button>
+    </li>
+  </ul>
+</nav>
 
-<div *ngIf="posts.length; else noPosts">
-  <app-post
-    [post]="p"
-    [postIndex]="idx+1"
-    *ngFor="let p of posts; index as idx"
-    (onRemove)="removePost($event)"
-    class="posts-list"
-  >
-  </app-post>
+<div class="container">
+  <div class="card">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
-<ng-template #noPosts>
-  no posts :)
-</ng-template>
+
+

@@ -1,10 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-export interface Post {
-  id: number;
-  title: string;
-  text: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Post, PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-post',
@@ -12,20 +8,14 @@ export interface Post {
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
+  post: Post;
 
-  @Input() post: Post;
-  @Input() postIndex: number;
+  constructor(private route: ActivatedRoute, private postsService: PostsService) { }
 
-  @Output() onRemove: EventEmitter<number> = new EventEmitter();
-
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  removePost() {
-    this.onRemove.emit(this.post.id);
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.post = this.postsService.getById(+params.id);
+    });
   }
 
 }
